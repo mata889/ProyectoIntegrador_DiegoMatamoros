@@ -24,5 +24,6 @@ public abstract class Piezas {
         return "Piezas{" + "tipo=" + tipo + '}';
     }
     
-    public abstract int movimiento();
+    public abstract String[][] movimiento(String[][] matriz, int x, int y, int x2, int y2);
+    public abstract String[][] comer();
 }
