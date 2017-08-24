@@ -32,33 +32,41 @@ public class Rey extends Piezas {
         if (x == x2 && y != y2) {
             //vertical
             direccion = false;
-            for (int i = 0; i < y2; i++) {
-                if (!matriz[x][i].contains(" ")) {
-
-                } else {
+            for (int i = y + 1; i < y2; i++) {
+                if (matriz[x][i].contains("•") || matriz[x][i].contains("o") || matriz[x][i].contains("▫")) {
                     centinela = 1;
+                } else {
+
                 }
             }
             if (centinela == 0) {
-                matriz[x2][y2] = matriz[x][y];
-                matriz[x][y] = " ";
-                return matriz;
+                if (matriz[x2][y2].contains("x")) {
+                    System.out.println("No se puede poner en las x");
+                } else {
+                    matriz[x2][y2] = matriz[x][y];
+                    matriz[x][y] = " ";
+                    return matriz;
+                }
             } else {
                 System.out.println("Hay algo obstruyendo el camino x");
             }
         } else if (y == y2 && x != x2) {
             //hori
-            for (int i = 0; i < x2; i++) {
-                if (!matriz[i][y].contains(" ")) {
-
-                } else {
+            for (int i = x + 1; i < x2; i++) {
+                if (matriz[i][y].contains("•") || matriz[i][y].contains("x") || matriz[i][y].contains("o") || matriz[i][y].contains("▫")) {
                     centinela = 1;
+                } else {
+
                 }
             }
             if (centinela == 0) {
-                matriz[x2][y2] = matriz[x][y];
-                matriz[x][y] = " ";
-                return matriz;
+               if (matriz[x2][y2].contains("x")) {
+                    System.out.println("No se puede poner en las x");
+                } else {
+                    matriz[x2][y2] = matriz[x][y];
+                    matriz[x][y] = " ";
+                    return matriz;
+                }
             } else {
                 System.out.println("Hay algo obstruyendo el camino y");
             }

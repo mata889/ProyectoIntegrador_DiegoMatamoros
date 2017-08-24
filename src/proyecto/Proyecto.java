@@ -31,9 +31,9 @@ public class Proyecto {
                     //ImprimeMatriz2(tableroFinal);
                     do {
                         int x, y, x1, y1;
-                        while (resp == 's') {
+                        
                             ImprimeMatriz2(tableroFinal);
-                            System.out.println("Es su turno jugador 2:" + jugador2 + "\nescoja una posicion X y Y");
+                            System.out.println("Es su turno jugador 2(Rebeldes):" + jugador2 + "\nescoja una posicion X y Y");
                             System.out.println("su x:");
                             x = sc.nextInt();
                             System.out.println("su y:");
@@ -43,16 +43,17 @@ public class Proyecto {
                             System.out.println("y:");
                             y1 = sc.nextInt();
                             if (tablero[x][y].contains("•")) {
-                                ISoyRebelde.movimiento(tablero, x, y, x1, y1);
-                                resp = 'n';
+                               
+                                tableroFinal=ISoyRebelde.movimiento(tablero, x, y, x1, y1);
+                                
                             } else {
                                 System.out.println("La pieza que intento mover no es de su equipo!\n");
                             }
 
-                        }
-                        while (resp == 'n') {
+                        
+                        
                             ImprimeMatriz2(tableroFinal);
-                            System.out.println("Es su turno jugador 1:" + jugador1 + "\nescoja una posicion X y Y");
+                            System.out.println("Es su turno jugador 1(Duques):" + jugador1 + "\nescoja una posicion X y Y");
                             System.out.println("su x:");
                             x = sc.nextInt();
                             System.out.println("su y:");
@@ -62,17 +63,17 @@ public class Proyecto {
                             System.out.println("y:");
                             y1 = sc.nextInt();
                             if ( tablero[x][y].contains("o")) {
-                                D.movimiento(tablero, x, y, x1, y1);
+                               
                                 tableroFinal=D.movimiento(tablero, x, y, x1, y1);
                                 resp = 's';
                             } else if (tablero[x][y].contains("▫") ) {
-                                R.movimiento(tablero, x, y, x1, y1);
+                               
                                 tableroFinal=R.movimiento(tablero, x, y, x1, y1);
                                 resp = 's';
                             } else {
                                 System.out.println("La pieza que intento mover no es de su equipo!\n");
                             }   
-                        }
+                        
                     } while (gano != true);
                     break;
             }
