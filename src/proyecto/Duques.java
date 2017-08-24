@@ -31,7 +31,7 @@ public class Duques extends Piezas {
                 if (matriz[x][i].contains("•") || matriz[x][i].contains("x") || matriz[x][i].contains("o") || matriz[x][i].contains("▫")) {
                     centinela = 1;
                 } else {
-
+                    
                 }
             }
             if (centinela == 0) {
