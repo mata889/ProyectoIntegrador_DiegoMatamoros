@@ -96,13 +96,26 @@ public class Proyecto {
     }
 
     public static void ImprimeMatriz2(String[][] x) {
+       
         for (int i = 0; i < x.length; i++) {
+            
             for (int j = 0; j < x[0].length; j++) {
-
+                
+                if (j==0) {
+                      
+                    if (i<=9) {
+                        System.out.print(" "+i);
+                    }else{
+                        System.out.print(i);}
+                }
+                
                 System.out.print("[" + x[i][j] + "]");
-
+                
             }
+           
             System.out.println(" ");
+            
+           
         }
     }
 
@@ -110,7 +123,7 @@ public class Proyecto {
 
         System.out.println(" ");
         for (int i = 0; i < x.length; i++) {
-
+               
             for (int j = 0; j < x[0].length; j++) {
                 if ((i == 0 && j == 0) || (i == 0 && j == 1) || (i == 1 && j == 0) || (i == 1 && j == 1) || (i == 0 && j == 17)
                         || (i == 0 && j == 18) || (i == 1 && j == 17) || (i == 1 && j == 18) || (i == 17 && j == 0) || (i == 17 && j == 1)
