@@ -25,5 +25,5 @@ public abstract class Piezas {
     }
     
     public abstract String[][] movimiento(String[][] matriz, int x, int y, int x2, int y2);
-    public abstract String[][] comer(String[][] matriz, int x, int y, int x2, int y2);
+    
 }

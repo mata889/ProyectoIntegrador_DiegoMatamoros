@@ -9,9 +9,9 @@ public class Proyecto {
     static String jugador1, jugador2;
     static String tablero[][] = new String[19][19];
     static String tableroFinal[][] = (ImprimeMatriz(Recursiva(tablero, 0, 0)));
-    static Rey R=new Rey();
-    static Duques D=new Duques();
-    static Rebeldes ISoyRebelde=new Rebeldes();
+    static Rey R = new Rey();
+    static Duques D = new Duques();
+    static Rebeldes ISoyRebelde = new Rebeldes();
 
     public static void main(String[] args) {
         int menu;
@@ -31,50 +31,63 @@ public class Proyecto {
                     //ImprimeMatriz2(tableroFinal);
                     do {
                         int x, y, x1, y1;
-                        
-                            ImprimeMatriz2(tableroFinal);
-                            System.out.println("Es su turno jugador 2(Rebeldes):" + jugador2 + "\nescoja una posicion X y Y");
-                            System.out.println("su x:");
-                            x = sc.nextInt();
-                            System.out.println("su y:");
-                            y = sc.nextInt();
-                            System.out.println("Adonde la va a mover\nx:");
-                            x1 = sc.nextInt();
-                            System.out.println("y:");
-                            y1 = sc.nextInt();
-                            if (tablero[x][y].contains("•")) {
-                               
-                                tableroFinal=ISoyRebelde.movimiento(tablero, x, y, x1, y1);
-                                
-                            } else {
-                                System.out.println("La pieza que intento mover no es de su equipo!\n");
+
+                        ImprimeMatriz2(tableroFinal);
+                        System.out.println("Es su turno jugador 2(Rebeldes):" + jugador2 + "\nescoja una posicion X y Y");
+                        System.out.println("su x:");
+                        x = sc.nextInt();
+                        System.out.println("su y:");
+                        y = sc.nextInt();
+                        System.out.println("Adonde la va a mover\nx:");
+                        x1 = sc.nextInt();
+                        System.out.println("y:");
+                        y1 = sc.nextInt();
+                        if (tablero[x][y].contains("•")) {
+
+                            tableroFinal = ISoyRebelde.movimiento(tablero, x, y, x1, y1);
+
+                        } else {
+                            System.out.println("La pieza que intento mover no es de su equipo!\n");
+                        }
+
+                        ImprimeMatriz2(tableroFinal);
+                        System.out.println("Es su turno jugador 1(Duques):" + jugador1 + "\nescoja una posicion X y Y");
+                        System.out.println("su x:");
+                        x = sc.nextInt();
+                        System.out.println("su y:");
+                        y = sc.nextInt();
+                        System.out.println("Adonde la va a mover\nx:");
+                        x1 = sc.nextInt();
+                        System.out.println("y:");
+                        y1 = sc.nextInt();
+                        if (tablero[x][y].contains("o")) {
+
+                            tableroFinal = D.movimiento(tablero, x, y, x1, y1);
+                            resp = 's';
+                        } else if (tablero[x][y].contains("▫")) {
+
+                            tableroFinal = R.movimiento(tablero, x, y, x1, y1);
+                            gano = R.ganar(tablero, x, y, x1, y1);
+                            for (int i = 0; i < tableroFinal.length; i++) {
+                                for (int j = 0; j < tableroFinal.length; j++) {
+                                    if (i==9 && j==9) {
+                                        if ( tableroFinal[i][j].contains(" ")) {
+                                        tableroFinal[i][j]="X";
+                                    }
+                                    }
+                                    
+                                }
                             }
 
-                        
-                        
-                            ImprimeMatriz2(tableroFinal);
-                            System.out.println("Es su turno jugador 1(Duques):" + jugador1 + "\nescoja una posicion X y Y");
-                            System.out.println("su x:");
-                            x = sc.nextInt();
-                            System.out.println("su y:");
-                            y = sc.nextInt();
-                            System.out.println("Adonde la va a mover\nx:");
-                            x1 = sc.nextInt();
-                            System.out.println("y:");
-                            y1 = sc.nextInt();
-                            if ( tablero[x][y].contains("o")) {
-                               
-                                tableroFinal=D.movimiento(tablero, x, y, x1, y1);
-                                resp = 's';
-                            } else if (tablero[x][y].contains("▫") ) {
-                               
-                                tableroFinal=R.movimiento(tablero, x, y, x1, y1);
-                                resp = 's';
-                            } else {
-                                System.out.println("La pieza que intento mover no es de su equipo!\n");
-                            }   
-                        
+                            resp = 's';
+                        } else {
+                            System.out.println("La pieza que intento mover no es de su equipo!\n");
+                        }
+                        if (R.ganar(tablero, x, y, x1, y1) == true) {
+                            JOptionPane.showMessageDialog(null, "GANO LOS DUQUES");
+                        }
                     } while (gano != true);
+
                     break;
             }
         } while (menu != 0);
@@ -96,26 +109,26 @@ public class Proyecto {
     }
 
     public static void ImprimeMatriz2(String[][] x) {
-       
+
         for (int i = 0; i < x.length; i++) {
-            
+
             for (int j = 0; j < x[0].length; j++) {
-                
-                if (j==0) {
-                      
-                    if (i<=9) {
-                        System.out.print(" "+i);
-                    }else{
-                        System.out.print(i);}
+
+                if (j == 0) {
+
+                    if (i <= 9) {
+                        System.out.print(" " + i);
+                    } else {
+                        System.out.print(i);
+                    }
                 }
-                
+
                 System.out.print("[" + x[i][j] + "]");
-                
+
             }
-           
+
             System.out.println(" ");
-            
-           
+
         }
     }
 
@@ -123,7 +136,7 @@ public class Proyecto {
 
         System.out.println(" ");
         for (int i = 0; i < x.length; i++) {
-               
+
             for (int j = 0; j < x[0].length; j++) {
                 if ((i == 0 && j == 0) || (i == 0 && j == 1) || (i == 1 && j == 0) || (i == 1 && j == 1) || (i == 0 && j == 17)
                         || (i == 0 && j == 18) || (i == 1 && j == 17) || (i == 1 && j == 18) || (i == 17 && j == 0) || (i == 17 && j == 1)

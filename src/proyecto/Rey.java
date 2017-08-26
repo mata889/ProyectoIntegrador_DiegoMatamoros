@@ -42,7 +42,8 @@ public class Rey extends Piezas {
                 }
                 if (centinela == 0) {
 
-                    if (x2 >= 2 && x2 <= 16 || y2 >= 2 && y2 <= 16) {
+                    if (x2 >= 2 && x2 <= 16 && y2 >= 2 && y2 <= 16) {
+
                         matriz[x2][y2] = matriz[x][y];
                         matriz[x][y] = " ";
                         if (matriz[x2 + 1][y2].contains("•") && matriz[x2 + 2][y2].contains("o") || matriz[x2 + 2][y2].contains("▫")) {
@@ -78,14 +79,14 @@ public class Rey extends Piezas {
             } else if (y == y2 && x != x2) {
                 //hori
                 for (int i = x + 1; i < x2; i++) {
-                    if (matriz[i][y].contains("•") || matriz[i][y].contains("o")) {
+                    if (matriz[i][y].contains("•") || matriz[i][y].contains("o")||matriz[i][y].contains("X")) {
                         centinela = 1;
                     } else {
 
                     }
                 }
                 if (centinela == 0) {
-                    if (x2 >= 2 && x2 <= 15 || y2 >= 2 && y2 <= 15) {
+                    if (x2 >= 2 && x2 <= 16 && y2 >= 2 && y2 <= 16) {
                         matriz[x2][y2] = matriz[x][y];
                         matriz[x][y] = " ";
                         if (matriz[x2 + 1][y2].contains("•") && matriz[x2 + 2][y2].contains("o") || matriz[x2 + 2][y2].contains("▫")) {
@@ -128,8 +129,25 @@ public class Rey extends Piezas {
 
     }
 
-    @Override
-    public String[][] comer(String[][] matriz, int x, int y, int x2, int y2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean ganar(String[][] matriz, int x, int y, int x2, int y2) {
+        try {
+            
+            if (matriz[x2][y2].contains(matriz[0][0]) || matriz[x2][y2].contains(matriz[0][1]) || matriz[x2][y2].contains(matriz[1][0]) ||
+                    matriz[x2][y2].contains(matriz[1][1]) || matriz[x2][y2].contains(matriz[0][18]) || matriz[x2][y2].contains(matriz[0][17]) || 
+                    matriz[x2][y2].contains(matriz[1][18]) || matriz[x2][y2].contains(matriz[1][17]) || matriz[x2][y2].contains(matriz[18][0]) || 
+                    matriz[x2][y2].contains(matriz[18][1]) || matriz[x2][y2].contains(matriz[17][0]) || matriz[x2][y2].contains(matriz[17][2]) || 
+                    matriz[x2][y2].contains(matriz[18][18]) || matriz[x2][y2].contains(matriz[18][17]) || matriz[x2][y2].contains(matriz[17][18]) ||
+                    matriz[x2][y2].contains(matriz[17][17])) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println("Se ha salido del rango");
+        } finally {
+            return false;
+        }
+
     }
+
 }

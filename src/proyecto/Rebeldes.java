@@ -34,9 +34,9 @@ public class Rebeldes extends Piezas {
             if (x == x2 && y != y2) {
                 //Horizontal
                 direccion = false;
-                for (int i = y + 1; i < y2; i++) {
+                for (int i = y + 1; i <=y2; i++) {
 
-                    if (matriz[x][i].contains("•") || matriz[x][i].contains("x") || matriz[x][i].contains("o") || matriz[x][i].contains("?")) {
+                    if (matriz[x][i].contains("•") || matriz[x][i].contains("x") || matriz[x][i].contains("o") || matriz[x][i].contains("▫")) {
                         centinela = 1;
                     } else {
 
@@ -48,10 +48,38 @@ public class Rebeldes extends Piezas {
                         System.out.println("No puede moverse hacia una x");
                         return matriz;
                     } else {
-                        if (x2 >= 2 && x2 <= 16 || y2 >= 2 && y2 <= 16) {
-                            for (int i = 0; i < 4; i++) {
-                                
+                        if (x2 >= 2 && x2 <= 16 && y2 >= 2 && y2 <= 16) {
+                            if (matriz[x2 + 1][y2].contains("▫")) {
+                                if (matriz[x2 + 1][y2 + 1].contains("•") && matriz[x2 + 1][y2 - 1].contains("•") && matriz[x2 + 2][y2].contains("•")) {
+                                    matriz[x2][y2] = matriz[x][y];
+                                    matriz[x][y] = " ";
+                                    matriz[x2 + 1][y2] = " ";
+                                    return matriz;
+                                }
+                            } else if (matriz[x2 - 1][y2].contains("▫")) {
+                                if (matriz[x2 - 1][y2 + 1].contains("•") && matriz[x2 - 1][y2 - 1].contains("•") && matriz[x2 - 2][y2].contains("•")) {
+                                    matriz[x2][y2] = matriz[x][y];
+                                    matriz[x][y] = " ";
+                                    matriz[x2 + 1][y2] = " ";
+                                    return matriz;
+                                }
+                            } else if (matriz[x2][y2 + 1].contains("▫")) {
+                                if (matriz[x2 + 1][y2 + 1].contains("•") && matriz[x2 - 1][y2 + 1].contains("•") && matriz[x2][y2 + 2].contains("•")) {
+                                    matriz[x2][y2] = matriz[x][y];
+                                    matriz[x][y] = " ";
+                                    matriz[x2 + 1][y2] = " ";
+                                    return matriz;
+                                }
+                            } else if (matriz[x2][y2 - 1].contains("▫")) {
+                                if (matriz[x2 - 1][y2 - 1].contains("•") && matriz[x2 + 1][y2 - 1].contains("•") && matriz[x2][y2 - 2].contains("•")) {
+                                    matriz[x2][y2] = matriz[x][y];
+                                    matriz[x][y] = " ";
+                                    matriz[x2 + 1][y2] = " ";
+                                    return matriz;
+
+                                }
                             }
+
                             matriz[x2][y2] = matriz[x][y];
                             matriz[x][y] = " ";
                             if (matriz[x2 + 1][y2].contains("o") && matriz[x2 + 2][y2].contains("•")) {
@@ -87,7 +115,7 @@ public class Rebeldes extends Piezas {
                 }
             } else if (y == y2 && x != x2) {
                 //Vertical
-                for (int i = x + 1; i < x2; i++) {
+                for (int i = x + 1; i <=x2; i++) {
 
                     if (matriz[i][y].contains("•") || matriz[i][y].contains("x") || matriz[i][y].contains("o") || matriz[i][y].contains("?")) {
                         centinela = 1;
@@ -100,27 +128,39 @@ public class Rebeldes extends Piezas {
                     if (matriz[x2][y2].contains("x")) {
                         System.out.println("No puede moverse hacia una x");
                         return matriz;
-                    } else {
-                        if (x2 >= 2 && x2 <= 15 || y2 >= 2 && y2 <= 15) {
-                            matriz[x2][y2] = matriz[x][y];
-                            matriz[x][y] = " ";
-                            if (matriz[x2 + 1][y2].contains("o") && matriz[x2 + 2][y2].contains("•")) {
+                    }
+                    if (x2 >= 2 && x2 <= 16 && y2 >= 2 && y2 <= 16) {
+                        if (matriz[x2 + 1][y2].contains("▫")) {
+                            if (matriz[x2 + 1][y2 + 1].contains("•") && matriz[x2 + 1][y2 - 1].contains("•") && matriz[x2 + 2][y2].contains("•")) {
+                                matriz[x2][y2] = matriz[x][y];
+                                matriz[x][y] = " ";
                                 matriz[x2 + 1][y2] = " ";
-                                System.out.println("Ha capturado un Duque!");
                                 return matriz;
-                            } else if (matriz[x2 - 1][y2].contains("o") && matriz[x2 - 2][y2].contains("•")) {
-                                matriz[x2 - 1][y2] = " ";
-                                System.out.println("Ha capturado un Duque!");
+                            }
+                        } else if (matriz[x2 - 1][y2].contains("▫")) {
+                            if (matriz[x2 - 1][y2 + 1].contains("•") && matriz[x2 - 1][y2 - 1].contains("•") && matriz[x2 - 2][y2].contains("•")) {
+                                matriz[x2][y2] = matriz[x][y];
+                                matriz[x][y] = " ";
+                                matriz[x2 + 1][y2] = " ";
                                 return matriz;
-                            } else if (matriz[x2][y2 + 1].contains("o") && matriz[x2][y2 + 2].contains("•")) {
-                                matriz[x2][y2 + 1] = " ";
-                                System.out.println("Ha capturado un Duque!");
+                            }
+                        } else if (matriz[x2][y2 + 1].contains("▫")) {
+                            if (matriz[x2 + 1][y2 + 1].contains("•") && matriz[x2 - 1][y2 + 1].contains("•") && matriz[x2][y2 + 2].contains("•")) {
+                                matriz[x2][y2] = matriz[x][y];
+                                matriz[x][y] = " ";
+                                matriz[x2 + 1][y2] = " ";
                                 return matriz;
-                            } else if (matriz[x2][y2 - 1].contains("o") && matriz[x2][y2 - 2].contains("•")) {
-                                matriz[x2][y2 - 1] = " ";
-                                System.out.println("Ha capturado un Duque!");
+                            }
+                        } else if (matriz[x2 - 1][y2].contains("▫")) {
+                            if (matriz[x2 + 1][y2 - 1].contains("•") && matriz[x2 - 1][y2 + 1].contains("•") && matriz[x2 - 2][y2].contains("•")) {
+                                matriz[x2][y2] = matriz[x][y];
+                                matriz[x][y] = " ";
+                                matriz[x2 + 1][y2] = " ";
                                 return matriz;
+
                             } else {
+                                matriz[x2][y2] = matriz[x][y];
+                                matriz[x][y] = " ";
                                 return matriz;
                             }
                         } else {
@@ -128,8 +168,12 @@ public class Rebeldes extends Piezas {
                             matriz[x][y] = " ";
                             return matriz;
                         }
-
+                    } else {
+                        matriz[x2][y2] = matriz[x][y];
+                        matriz[x][y] = " ";
+                        return matriz;
                     }
+
                 } else {
                     System.out.println("Hay una pieza obstruyendo el movimiento!");
                     return matriz;
@@ -142,14 +186,11 @@ public class Rebeldes extends Piezas {
             System.out.println("\033[31mSE HA SALIDO DEL RANGO");
             return matriz;
         }
-
+        return matriz;
     }
 
-    @Override
-    public String[][] comer(String[][] matriz, int x, int y, int x2, int y2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean ganar(String[][] matriz, int x, int y, int x2, int y2) {
+        return true;
     }
 
-    }
-
-
+}
