@@ -79,7 +79,7 @@ public class Rey extends Piezas {
             } else if (y == y2 && x != x2) {
                 //hori
                 for (int i = x + 1; i < x2; i++) {
-                    if (matriz[i][y].contains("•") || matriz[i][y].contains("o")||matriz[i][y].contains("X")) {
+                    if (matriz[i][y].contains("•") || matriz[i][y].contains("o") || matriz[i][y].contains("X")) {
                         centinela = 1;
                     } else {
 
@@ -131,22 +131,21 @@ public class Rey extends Piezas {
 
     public boolean ganar(String[][] matriz, int x, int y, int x2, int y2) {
         try {
-            
-            if (matriz[x2][y2].contains(matriz[0][0]) || matriz[x2][y2].contains(matriz[0][1]) || matriz[x2][y2].contains(matriz[1][0]) ||
-                    matriz[x2][y2].contains(matriz[1][1]) || matriz[x2][y2].contains(matriz[0][18]) || matriz[x2][y2].contains(matriz[0][17]) || 
-                    matriz[x2][y2].contains(matriz[1][18]) || matriz[x2][y2].contains(matriz[1][17]) || matriz[x2][y2].contains(matriz[18][0]) || 
-                    matriz[x2][y2].contains(matriz[18][1]) || matriz[x2][y2].contains(matriz[17][0]) || matriz[x2][y2].contains(matriz[17][2]) || 
-                    matriz[x2][y2].contains(matriz[18][18]) || matriz[x2][y2].contains(matriz[18][17]) || matriz[x2][y2].contains(matriz[17][18]) ||
-                    matriz[x2][y2].contains(matriz[17][17])) {
-                return true;
-            } else {
-                return false;
+            for (int i = 0; i < matriz.length; i++) {
+                for (int j = 0; j < matriz.length; j++) {
+                    if (matriz[i][j].contains("▫")) {
+                        if (i == 0 && j == 0 || i == 0 && j == 1 || i == 1 && j == 1 || i == 1 && j == 0 || i == 0 && j == 18 || i == 0 && j == 17 || i == 1 && j == 18 || i == 1 && j == 17 || i == 18 && j == 0 || i == 18 && j == 1 || i == 17 && j == 0 || i == 17 && j == 2 || i == 18 && j == 18 || i == 18 && j == 17 || i == 17 && j == 18 || i == 17 && j == 17) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                }
             }
         } catch (Exception e) {
             System.out.println("Se ha salido del rango");
-        } finally {
-            return false;
         }
+        return false;
 
     }
 

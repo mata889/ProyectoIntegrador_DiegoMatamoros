@@ -45,6 +45,12 @@ public class Proyecto {
                         if (tablero[x][y].contains("•")) {
 
                             tableroFinal = ISoyRebelde.movimiento(tablero, x, y, x1, y1);
+                            gano=ISoyRebelde.ganar(tableroFinal, x, y, x1, y1);
+                            if (ISoyRebelde.ganar(tableroFinal, x, y, x1, y1) == true) {
+                            JOptionPane.showMessageDialog(null, "GANO LOS DUQUES");
+                            break;
+                        }
+                            
 
                         } else {
                             System.out.println("La pieza que intento mover no es de su equipo!\n");
@@ -67,7 +73,12 @@ public class Proyecto {
                         } else if (tablero[x][y].contains("▫")) {
 
                             tableroFinal = R.movimiento(tablero, x, y, x1, y1);
-                            gano = R.ganar(tablero, x, y, x1, y1);
+                            gano = R.ganar(tableroFinal, x, y, x1, y1);
+                            if (R.ganar(tableroFinal, x, y, x1, y1)==true) {
+                            JOptionPane.showMessageDialog(null,"Ganaron los dueques");
+                            break;
+                        }
+                            
                             for (int i = 0; i < tableroFinal.length; i++) {
                                 for (int j = 0; j < tableroFinal.length; j++) {
                                     if (i==9 && j==9) {
@@ -83,9 +94,10 @@ public class Proyecto {
                         } else {
                             System.out.println("La pieza que intento mover no es de su equipo!\n");
                         }
-                        if (R.ganar(tablero, x, y, x1, y1) == true) {
-                            JOptionPane.showMessageDialog(null, "GANO LOS DUQUES");
-                        }
+                        
+                        
+                        
+                        
                     } while (gano != true);
 
                     break;
@@ -109,11 +121,11 @@ public class Proyecto {
     }
 
     public static void ImprimeMatriz2(String[][] x) {
-
+        System.out.println("   0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18");
         for (int i = 0; i < x.length; i++) {
-
+            
             for (int j = 0; j < x[0].length; j++) {
-
+                
                 if (j == 0) {
 
                     if (i <= 9) {
